@@ -3,8 +3,8 @@ import { useParams, Link } from 'react-router-dom';
 import { useAuditoria, useFinalizarAuditoria } from '../hooks/useAuditorias';
 import { useChecklistItens } from '../hooks/useChecklist';
 import { RespostaChecklist } from '../components/auditoria/RespostaChecklist';
-import { format } from 'date-fns'; // Para formatar datas
-import { ptBR } from 'date-fns/locale'; // Para datas em português
+import { format } from 'date-fns'; 
+import { ptBR } from 'date-fns/locale';
 
 // Um estilo simples para o cabeçalho da página
 const headerStyle = {
@@ -36,6 +36,18 @@ const finalizarBtnStyle = {
   borderRadius: '5px',
   cursor: 'pointer',
   margin: '20px 0',
+};
+
+const backButtonStyle = {
+  display: 'inline-block',
+  padding: '8px 14px',
+  backgroundColor: '#6c757d', 
+  color: 'white',
+  textDecoration: 'none',
+  borderRadius: '5px',
+  fontWeight: 'bold',
+  marginBottom: '20px', 
+  fontSize: '0.9em'
 };
 
 const finalizarBtnDisabledStyle = {
@@ -84,8 +96,8 @@ function Auditoria() {
   // 5. O "coração": Renderização da página
   return (
     <div>
-      <Link to="/auditorias" style={{ textDecoration: 'none', color: '#007bff' }}>
-        {"< Voltar para lista de auditorias"}
+      <Link to="/auditorias" style={backButtonStyle}>
+        &larr; Voltar para Lista
       </Link>
       
       <div style={headerStyle}>
