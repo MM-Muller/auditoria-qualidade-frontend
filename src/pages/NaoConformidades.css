@@ -1,0 +1,81 @@
+.nc-page-container {
+  padding: 20px;
+}
+
+.nc-list {
+  list-style: none;
+  padding: 0;
+}
+
+.nc-item {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.nc-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+
+.nc-item-header h3 {
+  margin: 0;
+  color: #007bff;
+}
+
+.nc-item-status {
+  font-weight: bold;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+/* Cores baseadas no StatusNC */
+.status-ABERTA { background-color: #f8d7da; color: #721c24; }
+.status-EM_RESOLUCAO { background-color: #fff3cd; color: #856404; }
+.status-ESCALONADA { background-color: #f0ad4e; color: white; }
+.status-RESOLVIDA { background-color: #d4edda; color: #155724; }
+.status-CONTESTADA { background-color: #e2e3e5; color: #383d41; }
+
+
+.nc-item-details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  font-size: 0.9em;
+  color: #555;
+}
+
+.nc-item-details strong {
+  color: #333;
+}
+
+.nc-item-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.nc-item-actions button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.btn-resolver {
+  background-color: #28a745;
+  color: white;
+}
+
+.btn-escalonar {
+  background-color: #f0ad4e;
+  color: white;
+}

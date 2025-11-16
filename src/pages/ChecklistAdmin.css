@@ -1,0 +1,52 @@
+.admin-list {
+  list-style: none;
+  padding: 0;
+}
+
+.admin-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #eee;
+  padding: 10px 15px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  background: #fff;
+}
+
+.admin-item-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-item-info strong {
+  font-size: 1.1em;
+  color: #333;
+}
+
+.admin-item-info small {
+  color: #777;
+}
+
+.admin-item-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.admin-item-actions button {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.btn-edit {
+  background-color: #007bff;
+  color: white;
+}
+
+.btn-desativar {
+  background-color: #dc3545;
+  color: white;
+}

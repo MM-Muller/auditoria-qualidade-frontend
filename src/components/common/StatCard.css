@@ -1,0 +1,17 @@
+.stat-card {
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  text-align: center;
+}
+
+.stat-value {
+  font-size: 2.5em;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.stat-title {
+  font-size: 1.1em;
+  font-weight: 500;
+}

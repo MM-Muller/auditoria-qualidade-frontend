@@ -1,11 +1,20 @@
+/* Em src/index.css */
+
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  /* --- INÍCIO DA MUDANÇA --- */
+
+  /* Força o tema claro */
+  color-scheme: light;
+  /* Define o texto padrão como escuro */
+  color: #213547;
+  /* Define o fundo padrão como branco */
+  background-color: #ffffff;
+
+  /* --- FIM DA MUDANÇA --- */
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -24,8 +33,9 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
+  /* Remove o display flex para que o layout ocupe a página toda */
+  /* display: flex; */
+  /* place-items: center; */
   min-width: 320px;
   min-height: 100vh;
 }
@@ -42,7 +52,8 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  /* Corrigido para o tema claro */
+  background-color: #f9f9f9;
   cursor: pointer;
   transition: border-color 0.25s;
 }
@@ -52,17 +63,4 @@ button:hover {
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
 }
