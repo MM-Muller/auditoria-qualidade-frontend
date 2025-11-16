@@ -1,8 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { Layout } from './components/layout/Layout'; // 1. Importe o Layout
+import { Layout } from './components/layout/Layout';
 
-// Importe suas páginas
 import Dashboard from './pages/Dashboard';
 import Auditorias from './pages/Auditorias';
 import Auditoria from './pages/Auditoria';
@@ -13,7 +12,7 @@ import NotFound from './pages/NotFound';
 function App() {
   return (
     <Router>
-      {/* 2. Envolva as rotas com o Layout */}
+      {}
       <Layout>
         <Routes>
           <Route path="/" element={<Dashboard />} />
