@@ -2,10 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { useAuditorias, useCreateAuditoria } from '../hooks/useAuditorias';
-// import { format } from 'date-fns'; // Para formatar datas
+import './Auditorias.css'; // 1. Importar o novo CSS
 
 function Auditorias() {
-  // 1. Busca dados da API (vem do cache ou da rede)
+  // 1. Busca dados da API
   const { data: auditorias, isLoading, error } = useAuditorias();
   
   // 2. Hook para a mutação de criar
@@ -23,28 +23,44 @@ function Auditorias() {
     });
   };
 
+  // --- 5. Estilos simples para o formulário (pode mover para o CSS se preferir) ---
+  const formStyle = { 
+    padding: '20px', 
+    border: '1px solid #ccc', 
+    borderRadius: '8px', 
+    marginBottom: '30px', 
+    backgroundColor: '#f9f9f9' 
+  };
+  const fieldGroupStyle = { marginBottom: '15px', display: 'flex', flexDirection: 'column' };
+  const labelStyle = { fontWeight: 'bold', marginBottom: '5px' };
+  const inputStyle = { padding: '8px', border: '1px solid #ccc', borderRadius: '4px' };
+  const buttonStyle = { padding: '10px 15px', backgroundColor: '#007bff', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer', fontSize: '1em' };
+  const errorStyle = { color: 'red', fontSize: '0.9em', marginTop: '5px' };
+
   return (
     <div style={{ padding: '20px' }}>
       <h2>Gestão de Auditorias</h2>
       
       {/* Formulário de Criação */}
-      <form onSubmit={handleSubmit(onSubmit)} style={{ marginBottom: '20px', borderBottom: '1px solid #ccc', paddingBottom: '20px' }}>
+      <form onSubmit={handleSubmit(onSubmit)} style={formStyle}>
         <h3>Nova Auditoria</h3>
-        <div style={{ marginBottom: '10px' }}>
-          <label>Nome do Projeto: </label>
+        <div style={fieldGroupStyle}>
+          <label style={labelStyle}>Nome do Projeto:</label>
           <input 
+            style={inputStyle}
             {...register('nomeProjeto', { required: 'Campo obrigatório' })} 
           />
-          {errors.nomeProjeto && <span style={{ color: 'red' }}> {errors.nomeProjeto.message}</span>}
+          {errors.nomeProjeto && <span style={errorStyle}> {errors.nomeProjeto.message}</span>}
         </div>
-        <div style={{ marginBottom: '10px' }}>
-          <label>Auditor: </label>
+        <div style={fieldGroupStyle}>
+          <label style={labelStyle}>Auditor:</label>
           <input 
+            style={inputStyle}
             {...register('auditor', { required: 'Campo obrigatório' })} 
           />
-          {errors.auditor && <span style={{ color: 'red' }}> {errors.auditor.message}</span>}
+          {errors.auditor && <span style={errorStyle}> {errors.auditor.message}</span>}
         </div>
-        <button type="submit" disabled={createMutation.isPending}>
+        <button type="submit" style={buttonStyle} disabled={createMutation.isPending}>
           {createMutation.isPending ? 'Criando...' : 'Criar Auditoria'}
         </button>
       </form>
@@ -54,24 +70,40 @@ function Auditorias() {
       {isLoading && <p>Carregando auditorias...</p>}
       {error && <p>Ocorreu um erro ao buscar as auditorias.</p>}
       
-      <ul style={{ listStyle: 'none', padding: 0 }}>
+      {/* --- 6. LISTA ATUALIZADA COM BOTÕES --- */}
+      <ul className="auditoria-list">
         {auditorias?.map(auditoria => (
-          <li key={auditoria.id} style={{ marginBottom: '10px', border: '1px solid #eee', padding: '10px' }}>
-            <Link to={`/auditoria/${auditoria.id}`} style={{ fontSize: '1.2em', textDecoration: 'none' }}>
-              <strong>{auditoria.nomeProjeto}</strong>
-            </Link>
-            <span style={{ marginLeft: '10px', color: auditoria.finalizada ? 'green' : 'orange' }}>
-              ({auditoria.finalizada ? 'Finalizada' : 'Em Andamento'})
-            </span>
-            <div>
+          <li key={auditoria.id} className="auditoria-item">
+            
+            {/* Informações da Auditoria */}
+            <div className="auditoria-info">
+              <h3>
+                {auditoria.nomeProjeto}
+                <span className={`auditoria-status ${auditoria.finalizada ? 'status-finalizada' : 'status-andamento'}`}>
+                  ({auditoria.finalizada ? 'Finalizada' : 'Em Andamento'})
+                </span>
+              </h3>
               <small>Auditor: {auditoria.auditor}</small>
-              {/* <small> | Data: {format(new Date(auditoria.dataAuditoria), 'dd/MM/yyyy')}</small> */}
+              {auditoria.finalizada && (
+                <div className="auditoria-aderencia">
+                  Aderência: {auditoria.percentualAderencia}%
+                </div>
+              )}
             </div>
-            {auditoria.finalizada && (
-              <div style={{ color: 'blue' }}>
-                Aderência: {auditoria.percentualAderencia}%
-              </div>
-            )}
+
+            {/* Botões de Ação Condicionais */}
+            <div className="auditoria-actions">
+              {auditoria.finalizada ? (
+                <Link to={`/auditoria/${auditoria.id}`} className="btn-exibir">
+                  Exibir Dados
+                </Link>
+              ) : (
+                <Link to={`/auditoria/${auditoria.id}`} className="btn-iniciar">
+                  Iniciar/Continuar
+                </Link>
+              )}
+            </div>
+            
           </li>
         ))}
       </ul>
