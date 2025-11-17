@@ -1,6 +1,5 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
-import './Sidebar.css'; // Vamos criar este CSS básico
+import { NavLink } from "react-router-dom";
+import "./Sidebar.css";
 
 export const Sidebar = () => {
   return (
@@ -10,7 +9,9 @@ export const Sidebar = () => {
       </div>
       <ul className="sidebar-nav">
         <li>
-          <NavLink to="/" end>Dashboard</NavLink>
+          <NavLink to="/" end>
+            Dashboard
+          </NavLink>
         </li>
         <li>
           <NavLink to="/auditorias">Auditorias</NavLink>

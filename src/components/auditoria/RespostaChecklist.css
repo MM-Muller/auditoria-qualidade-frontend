@@ -85,7 +85,7 @@
   border: 1px solid #ccc;
   border-radius: 4px;
   font-size: 0.9em;
-  box-sizing: border-box; /* Garante que o padding não estoure a largura */
+  box-sizing: border-box;
   margin-bottom: 15px;
 }
 
