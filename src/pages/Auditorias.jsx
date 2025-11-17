@@ -122,7 +122,7 @@ function Auditorias() {
                 </Link>
               ) : (
                 <Link to={`/auditoria/${auditoria.id}`} className="btn-iniciar">
-                  Iniciar/Continuar
+                  Realizar Auditoria de Qualidade
                 </Link>
               )}
             </div>

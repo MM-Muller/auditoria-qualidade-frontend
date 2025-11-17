@@ -53,3 +53,7 @@ export const createNC = async (ncData) => {
   const { data } = await apiClient.post("/nao-conformidades", ncData);
   return data;
 };
+
+export const enviarEmailNC = async (id) => {
+  await apiClient.post(`/nao-conformidades/${id}/enviar-email`);
+};

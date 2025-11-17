@@ -47,7 +47,6 @@ export const useAddResposta = () => {
   return useMutation({
     mutationFn: api.addResposta,
     onSuccess: (data) => {
-      toast.success("Resposta salva!");
       queryClient.setQueryData([QUERY_KEY, data.id], data);
     },
   });

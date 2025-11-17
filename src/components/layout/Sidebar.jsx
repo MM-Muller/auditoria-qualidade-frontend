@@ -5,7 +5,8 @@ export const Sidebar = () => {
   return (
     <nav className="sidebar">
       <div className="sidebar-header">
-        <h3>Qualidade App</h3>
+        <h3>Ferramenta Auditoria</h3>
+        <h3>Capacitação</h3>
       </div>
       <ul className="sidebar-nav">
         <li>
@@ -14,13 +15,13 @@ export const Sidebar = () => {
           </NavLink>
         </li>
         <li>
+          <NavLink to="/admin/checklist">Perguntas do Checklist</NavLink>
+        </li>
+        <li>
           <NavLink to="/auditorias">Auditorias</NavLink>
         </li>
         <li>
           <NavLink to="/nao-conformidades">Não Conformidades</NavLink>
-        </li>
-        <li>
-          <NavLink to="/admin/checklist">Admin Checklist</NavLink>
         </li>
       </ul>
     </nav>

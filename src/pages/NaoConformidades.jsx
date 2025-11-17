@@ -1,5 +1,9 @@
 import React, { useState } from "react";
-import { useNCAbertas, useNCAtrasadas } from "../hooks/useNaoConformidade";
+import {
+  useNCAbertas,
+  useNCAtrasadas,
+  useEnviarEmailNC,
+} from "../hooks/useNaoConformidade";
 import { ResolveNCModal } from "../components/naoConformidade/ResolveNCModal";
 import { EscalonaNCModal } from "../components/naoConformidade/EscalonaNCModal";
 import { format } from "date-fns";
@@ -14,6 +18,8 @@ function NaoConformidades() {
   const { data: ncsAtrasadas, isLoading: isLoadingAtrasadas } =
     useNCAtrasadas();
 
+  const emailMutation = useEnviarEmailNC();
+
   const renderNCItem = (nc) => (
     <li key={nc.id} className="nc-item">
       <div className="nc-item-header">
@@ -25,10 +31,13 @@ function NaoConformidades() {
 
       <div className="nc-item-details">
         <span>
-          <strong>Classificação:</strong> {nc.classificacao}
+          <strong>Projeto:</strong> {nc.nomeProjeto || "N/D"}
         </span>
         <span>
           <strong>Responsável:</strong> {nc.responsavel || "N/D"}
+        </span>
+        <span>
+          <strong>Classificação:</strong> {nc.classificacao}
         </span>
         <span>
           <strong>Data Solicitação:</strong>
@@ -40,6 +49,14 @@ function NaoConformidades() {
         </span>
       </div>
 
+      <div className="nc-item-content">
+        <strong>Item do Checklist:</strong>
+        <p>{nc.itemDescricao || "N/D"}</p>
+
+        <strong>Ação Corretiva Indicada:</strong>
+        <p>{nc.acaoCorretiva || "Nenhuma ação indicada."}</p>
+      </div>
+
       <div className="nc-item-actions">
         <button className="btn-resolver" onClick={() => setNcParaResolver(nc)}>
           Resolver
@@ -49,6 +66,15 @@ function NaoConformidades() {
           onClick={() => setNcParaEscalonar(nc)}
         >
           Escalonar
+        </button>
+
+        {/* 3. BOTÃO NOVO ADICIONADO */}
+        <button
+          className="btn-comunicar"
+          onClick={() => emailMutation.mutate(nc.id)}
+          disabled={emailMutation.isPending}
+        >
+          {emailMutation.isPending ? "Enviando..." : "Comunicação de NC"}
         </button>
       </div>
     </li>

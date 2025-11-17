@@ -13,7 +13,7 @@ function Dashboard() {
 
   return (
     <div>
-      <h2>Dashboard de Qualidade</h2>
+      <h2>Dashboard</h2>
       <p>Resumo do estado atual do sistema de auditorias.</p>
 
       <div className="dashboard-grid">

@@ -68,3 +68,12 @@ export const useEscalonarNC = () => {
     },
   });
 };
+
+export const useEnviarEmailNC = () => {
+  return useMutation({
+    mutationFn: api.enviarEmailNC,
+    onSuccess: () => {
+      toast.success("Email de comunicação enviado!");
+    },
+  });
+};

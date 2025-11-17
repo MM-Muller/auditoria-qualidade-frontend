@@ -177,6 +177,7 @@ function Auditoria() {
               <RespostaChecklist
                 key={item.id}
                 auditoriaId={id}
+                auditoria={auditoria}
                 itemChecklist={item}
                 respostaExistente={respostaEncontrada}
               />
